@@ -1,8 +1,6 @@
-// src/services/firebase.js
-
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -22,9 +20,9 @@ const storage = getStorage(app);
 
 const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogle = async () => {
+const signInWithGoogleRedirect = async () => {
   try {
-    await signInWithPopup(auth, googleProvider);
+    await signInWithRedirect(auth, googleProvider);
   } catch (error) {
     console.error(error);
     alert(error.message);
@@ -40,4 +38,4 @@ const logout = async () => {
   }
 };
 
-export { db, auth, storage, signInWithGoogle, logout };
+export { db, auth, storage, signInWithGoogleRedirect, logout };
