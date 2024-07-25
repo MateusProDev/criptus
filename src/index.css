@@ -1,0 +1,191 @@
+/* index.css */
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #282c34;
+  color: white;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.navbar .menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar .menu li a:hover {
+  text-decoration: underline;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  transition: left 0.3s ease;
+  padding-top: 60px;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar button {
+  position: absolute;
+  top: 10px;
+  right: -40px;
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  padding: 10px 20px;
+}
+
+.sidebar nav ul li a {
+  color: white;
+}
+
+.sidebar nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* PostList Styles */
+.post-list {
+  padding: 20px;
+  margin-top: 60px;
+}
+
+/* Post Styles */
+.post {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post h2 {
+  margin-bottom: 10px;
+}
+
+.post p {
+  margin-bottom: 10px;
+}
+
+/* Comments Styles */
+.comments {
+  margin-top: 20px;
+}
+
+.comments form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.comments form input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.comments form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #282c34;
+  color: white;
+  cursor: pointer;
+}
+
+.comments .comment-list .comment {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Dashboard Styles */
+.dashboard {
+  padding: 20px;
+  margin-top: 60px;
+}
+
+/* CreatePost Styles */
+.create-post {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-post h2 {
+  margin-bottom: 10px;
+}
+
+.create-post form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-post form input,
+.create-post form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.create-post form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #282c34;
+  color: white;
+  cursor: pointer;
+}
