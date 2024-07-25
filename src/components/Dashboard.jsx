@@ -1,16 +1,17 @@
-import React from 'react';
-import CreatePost from './CreatePost';
-import styled from 'styled-components';
+// components/Dashboard.js
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
 
-const DashboardContainer = styled.div`
-  padding: 20px;
-`;
+const Dashboard = () => {
+  const user = useSelector(selectUser);
 
-const Dashboard = () => (
-  <DashboardContainer>
-    <h1>Dashboard</h1>
-    <CreatePost />
-  </DashboardContainer>
-);
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <p>Welcome, {user.name}</p>
+    </div>
+  );
+};
 
 export default Dashboard;

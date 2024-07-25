@@ -1,35 +1,24 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './contexts/AuthContext';  // Certifique-se de que o caminho está correto
-import Header from './components/Header';
-import HomePage from './pages/HomePage';
-import DashboardPage from './pages/DashboardPage';
-import AboutPage from './pages/AboutPage';
-import Login from './components/Login';
-import UserProfile from './components/UserProfile';
- 
-const App = () => {
-  return (
-    <AuthProvider>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/dashboard" element={<ProtectedRoute component={DashboardPage} />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<ProtectedRoute component={UserProfile} />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
-  );
-};
+// src/App.js
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Feed from "./components/Feed";
+import Profile from "./components/Profile";
+import PrivateRoute from "./components/PrivateRoute";
+import Navbar from "./components/Navbar";
 
-const ProtectedRoute = ({ component: Component }) => {
-  const { currentUser } = useAuth();
-  return currentUser ? <Component /> : <Navigate to="/login" />;
-};
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+        <Route path="/" element={<Feed />} />
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;
-
-// dvd
