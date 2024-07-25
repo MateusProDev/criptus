@@ -7,7 +7,7 @@ import DashboardPage from './pages/DashboardPage';
 import AboutPage from './pages/AboutPage';
 import Login from './components/Login';
 import UserProfile from './components/UserProfile';
-
+ 
 const App = () => {
   return (
     <AuthProvider>
@@ -31,3 +31,5 @@ const ProtectedRoute = ({ component: Component }) => {
 };
 
 export default App;
+
+// dvd
