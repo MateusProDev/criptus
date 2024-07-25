@@ -1,5 +1,5 @@
 import React from 'react';
-import { signInWithGoogleRedirect } from '../firebase/firebase';
+import { signInWithGooglePopup } from '../firebase/firebase';
 import styled from 'styled-components';
 
 const LoginContainer = styled.div`
@@ -28,8 +28,7 @@ const Button = styled.button`
 const Login = () => {
   const handleGoogleLogin = async () => {
     try {
-      await signInWithGoogleRedirect();
-      window.location.href = '/dashboard';
+      await signInWithGooglePopup();
     } catch (error) {
       console.error('Error signing in with Google:', error);
     }

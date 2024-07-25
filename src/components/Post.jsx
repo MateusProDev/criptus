@@ -1,18 +1,17 @@
+// src/components/Post.jsx
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { db, auth } from '../firebase/firebase';
 import { doc, updateDoc, arrayUnion, getDoc } from 'firebase/firestore';
-import styled from 'styled-components';
-import { FaHeart, FaComment, FaShare } from 'react-icons/fa';
+import { FaHeart, FaComment, FaShare, FaEye } from 'react-icons/fa';
 import { WhatsappShareButton } from 'react-share';
 
 const PostContainer = styled.div`
-  background: linear-gradient(145deg, #1f1c2c, #928dab);
+  background: var(--gradient-bg);
   border-radius: 15px;
-  box-shadow: 20px 20px 60px #14121b, -20px -20px 60px #2e2a3e;
-  color: white;
+  box-shadow: var(--box-shadow);
   padding: 20px;
   margin: 20px 0;
-  text-align: left;
 `;
 
 const AuthorInfo = styled.div`
@@ -58,7 +57,7 @@ const CommentInput = styled.textarea`
 `;
 
 const CommentButton = styled.button`
-  background: #00c6ff;
+  background: var(--primary-color);
   border: none;
   border-radius: 10px;
   color: white;
@@ -98,6 +97,16 @@ const Post = ({ post }) => {
   const [newComment, setNewComment] = useState('');
   const [hasLiked, setHasLiked] = useState(false);
   const [showComments, setShowComments] = useState(false);
+
+  useEffect(() => {
+    const incrementViews = async () => {
+      const postRef = doc(db, 'posts', post.id);
+      await updateDoc(postRef, {
+        views: (post.views || 0) + 1,
+      });
+    };
+    incrementViews();
+  }, [post.id]);
 
   useEffect(() => {
     const checkIfLiked = async () => {
@@ -166,12 +175,16 @@ const Post = ({ post }) => {
       <h2>{post.title}</h2>
       <p>{post.content}</p>
       {post.imageUrl && <PostImage src={post.imageUrl} alt={post.title} />}
+      <p>Posted on: {new Date(post.createdAt.seconds * 1000).toLocaleDateString()}</p>
       <IconContainer>
         <Icon onClick={handleLike}>
           <FaHeart color={hasLiked ? 'red' : 'white'} /> {likes}
         </Icon>
         <Icon onClick={handleToggleComments}>
           <FaComment /> {comments.length}
+        </Icon>
+        <Icon>
+          <FaEye /> {post.views || 0}
         </Icon>
         <Icon>
           <WhatsappShareButton url={window.location.href}>

@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAuth, GoogleAuthProvider, signInWithRedirect, signOut } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
@@ -20,11 +20,11 @@ const storage = getStorage(app);
 
 const googleProvider = new GoogleAuthProvider();
 
-const signInWithGoogleRedirect = async () => {
+const signInWithGooglePopup = async () => {
   try {
-    await signInWithRedirect(auth, googleProvider);
+    await signInWithPopup(auth, googleProvider);
   } catch (error) {
-    console.error(error);
+    console.error('Error signing in with Google:', error);
     alert(error.message);
   }
 };
@@ -38,4 +38,4 @@ const logout = async () => {
   }
 };
 
-export { db, auth, storage, signInWithGoogleRedirect, logout };
+export { db, auth, storage, signInWithGooglePopup, logout };
