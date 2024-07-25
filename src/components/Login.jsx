@@ -1,5 +1,3 @@
-// src/components/Login.jsx
-
 import React from 'react';
 import { signInWithGoogle } from '../firebase/firebase';
 import styled from 'styled-components';
@@ -28,9 +26,18 @@ const Button = styled.button`
 `;
 
 const Login = () => {
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithGoogle();
+      window.location.href = '/dashboard';
+    } catch (error) {
+      console.error('Error signing in with Google:', error);
+    }
+  };
+
   return (
     <LoginContainer>
-      <Button onClick={signInWithGoogle}>Login with Google</Button>
+      <Button onClick={handleGoogleLogin}>Login with Google</Button>
     </LoginContainer>
   );
 };
