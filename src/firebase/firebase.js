@@ -1,3 +1,4 @@
+// src/firebase/firebase.js
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
@@ -24,7 +25,7 @@ const signInWithGooglePopup = async () => {
   try {
     await signInWithPopup(auth, googleProvider);
   } catch (error) {
-    console.error('Error signing in with Google:', error);
+    console.error(error);
     alert(error.message);
   }
 };

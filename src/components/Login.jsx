@@ -29,6 +29,7 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await signInWithGooglePopup();
+      window.location.href = '/dashboard';
     } catch (error) {
       console.error('Error signing in with Google:', error);
     }
